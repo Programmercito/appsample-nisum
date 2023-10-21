@@ -40,22 +40,21 @@ public class Usuario implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
-
     private String id;
-    @Column(name = "name")
-    @JsonIgnore
 
+    @Column(name = "name")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String name;
     @Column(name = "email", unique = true)
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
             flags = {Pattern.Flag.CASE_INSENSITIVE}, message = "email no valido")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
     @Column(name = "password", nullable = true)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Telefono> phones;
     @Column(name = "created")
     private Date created;
