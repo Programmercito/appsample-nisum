@@ -13,7 +13,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 /**
  *
@@ -22,6 +25,7 @@ import lombok.Data;
 @Entity
 @Table
 @Data
+@Validated
 public class Usuario implements Serializable {
 
     @Id
@@ -31,8 +35,9 @@ public class Usuario implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "email")
+    @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",message = "El correo electrónico no es válido")
     private String email;
-    @Column(name = "password")
+    @Column(name = "password", nullable = true)
     private String password;
     @OneToMany(mappedBy = "usuario")
     private List<Telefono> phones;

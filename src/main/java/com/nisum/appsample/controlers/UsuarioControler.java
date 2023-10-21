@@ -6,10 +6,12 @@ package com.nisum.appsample.controlers;
 
 import com.nisum.appsample.model.entities.Usuario;
 import com.nisum.appsample.model.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,8 +24,8 @@ public class UsuarioControler {
     @Autowired
     UsuarioRepository userservice;
 
-    @PostMapping
-    public ResponseEntity insert(@RequestBody Usuario usuario) {
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {
         Usuario user = userservice.save(usuario);
         return ResponseEntity.ok(user);
     }

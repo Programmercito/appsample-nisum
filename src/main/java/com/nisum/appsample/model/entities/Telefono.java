@@ -26,7 +26,7 @@ class Telefono implements Serializable {
 
     private Long id;
 
-    @Column(name = "nomber")
+    @Column(name = "number")
     private String number;
     @Column(name = "citycode")
     private String cityCode;

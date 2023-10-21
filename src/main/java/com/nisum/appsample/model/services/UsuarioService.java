@@ -5,11 +5,14 @@ import com.nisum.appsample.model.repository.UsuarioRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  *
  * @author hered
  */
+@Service
 public class UsuarioService {
 
     @Autowired
