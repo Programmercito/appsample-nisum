@@ -47,12 +47,12 @@ public class Usuario implements Serializable {
 
     private String name;
     @Column(name = "email", unique = true)
-    @Email(regexp = "^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]*$", message = "mail no valido")
+    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            flags = {Pattern.Flag.CASE_INSENSITIVE}, message = "email no valido")
     @JsonIgnore
     private String email;
     @Column(name = "password", nullable = true)
     @JsonIgnore
-    @Pattern(regexp = "^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+$", message = "password no valido")
     private String password;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnore

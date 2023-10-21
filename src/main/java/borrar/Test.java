@@ -14,16 +14,18 @@ import java.util.regex.Pattern;
 public class Test {
 
     public static boolean isValidPassword(String password) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+$");
+        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
 
     public static void main(String[] args) {
-        String password = "123456Aa@de321";
+        String password = "juan@rodriguez.org";
+        
         System.out.println(isValidPassword(password)); // true
 
-        password = "contraseña";
+        password = "juanrodriguez.org";
         System.out.println(isValidPassword(password)); // false
     }
 }
