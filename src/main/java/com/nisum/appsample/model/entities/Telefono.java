@@ -21,7 +21,7 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-class Telefono implements Serializable {
+public class Telefono implements Serializable {
 
     @Id
     @Column(name = "id")

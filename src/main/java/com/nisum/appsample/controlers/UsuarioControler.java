@@ -5,7 +5,9 @@
 package com.nisum.appsample.controlers;
 
 import com.nisum.appsample.model.entities.Usuario;
+import com.nisum.appsample.model.entities.Telefono;
 import com.nisum.appsample.model.repository.UsuarioRepository;
+import com.nisum.appsample.model.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioControler {
 
     @Autowired
-    UsuarioRepository userservice;
+    UsuarioService userservice;
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {
