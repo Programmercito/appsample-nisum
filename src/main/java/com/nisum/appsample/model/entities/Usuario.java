@@ -52,6 +52,8 @@ public class Usuario implements Serializable {
     private String email;
     @Column(name = "password", nullable = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
+            flags = {Pattern.Flag.CASE_INSENSITIVE}, message = "password no valido")
     private String password;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
