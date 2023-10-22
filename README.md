@@ -18,7 +18,7 @@ Esta es una aplicación de ejemplo que incluye validaciones, capturadores de err
 
 Para ejecutar la aplicación, sigue estos pasos:
 
-1. Instala H2 en tu máquina local y ejecuta el siguiente script en la base de datos de prueba: 
+1. Instala H2 en tu máquina local y ejecuta el siguiente script en la base de datos de prueba (test en h2): 
 ```
 CREATE CACHED TABLE "PUBLIC"."TELEFONO"(
     "CITYCODE" CHARACTER VARYING(255),
