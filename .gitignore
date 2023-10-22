@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+*.js
 
 ### NetBeans ###
 /nbproject/private/
@@ -28,6 +29,8 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+/frontproject/node_modules
+/frontproject/.angular
 ### VS Code ###
 .vscode/
+node_modules

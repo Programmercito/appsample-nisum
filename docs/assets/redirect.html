@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Listen for focus event and blur event
+        let isActive = true;
+        window.addEventListener('focus', function () { isActive = true; });
+        window.addEventListener('blur', function () { isActive = false; });
+
+        function openURLIfActive(url) { if (isActive) { window.location = url; } }
+
+        window.onload = function () {
+            setTimeout(() => openURLIfActive('googlechrome://botsform.adsinfo.me/#/alertas-sices-nav'), 300);
+            setTimeout(() => openURLIfActive('https://botsform.adsinfo.me/#/alertas-sices-nav'), 500)
+        };
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
