@@ -72,7 +72,27 @@ public class UsersTests {
     @Test
     public void testInsertInvalidPassword() {
         Usuario user = this.init();
-        user.setPassword("joaq");
+        user.setPassword("joaqjhgjjhjhgjhghj");
+        when(usuarioRepository.save(any())).thenReturn(user);
+        assertThrows(ConstraintViolationException.class, () -> {
+            usuarioController.insert(user);
+        });
+        verify(usuarioRepository, never()).save(any());
+        //part 2
+        user.setPassword("joaq3ds");
+        when(usuarioRepository.save(any())).thenReturn(user);
+        assertThrows(ConstraintViolationException.class, () -> {
+            usuarioController.insert(user);
+        });
+        verify(usuarioRepository, never()).save(any());
+
+    }
+
+    @Test
+    public void testSizes() {
+        Usuario user = this.init();
+        //name con 51 de size deberia fallar
+        user.setName("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx2");
         when(usuarioRepository.save(any())).thenReturn(user);
         assertThrows(ConstraintViolationException.class, () -> {
             usuarioController.insert(user);
