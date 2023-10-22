@@ -20,6 +20,8 @@
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "/appsample-nisum/",
+
             "polyfills": [
               "zone.js"
             ],
