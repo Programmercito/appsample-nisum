@@ -14,7 +14,7 @@
 
 Esta es una aplicación de ejemplo que incluye validaciones, capturadores de errores y utiliza H2 como base de datos con una capa de servicio en el medio.
 
-# Instalación con MAVEN
+# Instalación con MAVEN en local
 
 Para ejecutar la aplicación, sigue estos pasos:
 
