@@ -14,11 +14,16 @@
 
 Esta es una aplicación de ejemplo que incluye validaciones, capturadores de errores y utiliza H2 como base de datos con una capa de servicio en el medio.
 
-# Instalación
+# Instalación con MAVEN
 
 Para ejecutar la aplicación, sigue estos pasos:
 
-1. Instala H2 en tu máquina local y ejecuta el siguiente script en la base de datos de prueba (test en h2): 
+1. Instala H2 en tu máquina local y
+2. Por defecto la aplicacion ya tiene creacion de tablas automatica en la base de datos "test" sin embargo si quieres mantener los datos comenta la propiedad:
+```
+spring.jpa.hibernate.ddl-auto=create
+```
+Y ejecuta el siguiente escript en la base de datos H2 en la base de datos "test": 
 ```
 CREATE CACHED TABLE "PUBLIC"."TELEFONO"(
     "CITYCODE" CHARACTER VARYING(255),
@@ -44,21 +49,44 @@ ALTER TABLE "PUBLIC"."USUARIO" ADD CONSTRAINT "PUBLIC"."UK_USUARIO" UNIQUE("EMAI
 ALTER TABLE "PUBLIC"."TELEFONO" ADD CONSTRAINT "PUBLIC"."FK_TELEFONO_USUARIO" FOREIGN KEY("USUARIO_ID") REFERENCES "PUBLIC"."USUARIO"("ID") NOCHECK;  
 
 ```
-2. Asegúrate de tener instalado Java 21 y que este fijado como java_home y en el path.
-3. Asegúrate de tener instalado Maven en tu máquina local y que esté en el PATH.
-4. Ejecuta el siguiente comando Maven para compilar el proyecto:
+3. Asegúrate de tener instalado Java 21 y que este fijado como java_home y en el path.
+4. Asegúrate de tener instalado Maven en tu máquina local y que esté en el PATH.
+5. Ejecuta el siguiente comando Maven para compilar el proyecto:
 ```
 mvn clean package
 ```
-1. Ejecuta la aplicación con Maven:
+6. Ejecuta la aplicación con Maven:
 ```
 mvn exec:java -Dexec.mainClass="com.nisum.appsample.AppsampleApplication"
 ```
 
+# Instalación con DOCKER
+
+Como alternativa se puede usar el archivo docker que esta en la raiz del proyecto
+1. Isntala docker en tu computador
+
+```
+   docker build -f spring.dockerfile -t nombre-de-tu-imagen 
+```
+y ejecutalo con :
+
+```
+    docker run -p 8080:8080 nombre-de-tu-imagen
+```
+
+# PRUEBAS
+En ambos casos ya sea en local o con docker una ves levantando lo puedes probar y testar en estos dos endpoints:
+```
+http://localhost:8080/ping
+```
 Con estos pasos, la aplicación debería estar corriendo.
-
-Para ver la documentación Swagger, visita [http://localhost:8080/doc/swagger-ui/index.html].
-
+```
+http://localhost:8080/user en POST
+```
+Para ver la documentación Swagger, visita 
+```
+http://localhost:8080/doc/swagger-ui/index.html
+```
 Si quieres probar la aplicación desde la consola, puedes usar el siguiente comando curl:
 
 ```bash
