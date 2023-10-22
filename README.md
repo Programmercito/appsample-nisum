@@ -84,7 +84,7 @@ Con estos pasos, la aplicación debería estar corriendo.
 ```
 http://localhost:8080/user en POST
 ```
-# Pruebas con Swagger
+#  Apidoc con Swagger
 
 Para ver la documentación Swagger, visita 
 ```
