@@ -24,7 +24,7 @@ public class IntegrityHandler {
         Map<String, String> response = new HashMap<>();
         String mensaje = ex.getMessage();
         if (mensaje.contains("PUBLIC.CONSTRAINT_INDEX_2 ")) {
-            response.put("mensaje", "El correo electrónico ya está en uso");
+            response.put("mensaje", "El correo ya registrado");
         } else {
             response.put("mensaje", "Problemas en la base de datos");
         }
