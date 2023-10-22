@@ -9,7 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author programmercito
  */
-public class PasswordService {
+public class PasswordGenerator {
 
     /**
      * Método para encriptar una contraseña.

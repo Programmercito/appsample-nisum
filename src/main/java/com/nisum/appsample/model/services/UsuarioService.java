@@ -3,7 +3,7 @@ package com.nisum.appsample.model.services;
 import com.nisum.appsample.controler.jwt.JwtGenerator;
 import com.nisum.appsample.model.entities.Usuario;
 import com.nisum.appsample.model.repository.UsuarioRepository;
-import com.nisum.appsample.password.PasswordService;
+import com.nisum.appsample.password.PasswordGenerator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -64,7 +64,7 @@ public class UsuarioService {
         }
         usuario.setToken(JwtGenerator.generateJWT(usuario.getEmail(), env.getProperty("secret"), 9000));
         usuario.setIsactive(true);
-        usuario.setPassword(PasswordService.cryptPass(usuario.getPassword(), env.getProperty("salt")));
+        usuario.setPassword(PasswordGenerator.cryptPass(usuario.getPassword(), env.getProperty("salt")));
         return usuarioRepository.save(usuario);
     }
 
