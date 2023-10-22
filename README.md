@@ -10,7 +10,7 @@
 - Pruebas Unitarias Spring boot test (junit)
 
 ## Diagrama de clases
-![[Diagrama de clases](https://github.com/Programmercito/appsample-nisum/blob/main/diagrama.png?raw=true)]
+![Diagrama de clases](https://github.com/Programmercito/appsample-nisum/blob/main/diagrama.png?raw=true)
 
 Esta es una aplicación de ejemplo que incluye validaciones, capturadores de errores y utiliza H2 como base de datos con una capa de servicio en el medio.
 
@@ -18,14 +18,39 @@ Esta es una aplicación de ejemplo que incluye validaciones, capturadores de err
 
 Para ejecutar la aplicación, sigue estos pasos:
 
-1. Instala H2 en tu máquina local y ejecuta el siguiente script en la base de datos de prueba: [[script](https://raw.githubusercontent.com/Programmercito/appsample-nisum/main/base.sql?token=GHSAT0AAAAAACIY6J3GNDA66XMZRQEJLKL4ZJVGQCA)]
-2. Asegúrate de tener instalado Java 21.
+1. Instala H2 en tu máquina local y ejecuta el siguiente script en la base de datos de prueba: 
+```
+CREATE CACHED TABLE "PUBLIC"."TELEFONO"(
+    "CITYCODE" CHARACTER VARYING(255),
+    "COUNTRYCODE" CHARACTER VARYING(255),
+    "ID" CHARACTER VARYING(255) NOT NULL,
+    "NUMBER" CHARACTER VARYING(255),
+    "USUARIO_ID" CHARACTER VARYING(255)
+);     
+ALTER TABLE "PUBLIC"."TELEFONO" ADD CONSTRAINT "PUBLIC"."PK_TELEFONO" PRIMARY KEY("ID");     
+CREATE CACHED TABLE "PUBLIC"."USUARIO"(
+    "ISACTIVE" BOOLEAN,
+    "CREATED" TIMESTAMP(6),
+    "LAST_LOGIN" TIMESTAMP(6),
+    "MODIFIED" TIMESTAMP(6),
+    "EMAIL" CHARACTER VARYING(255),
+    "ID" CHARACTER VARYING(255) NOT NULL,
+    "NAME" CHARACTER VARYING(255),
+    "PASSWORD" CHARACTER VARYING(255),
+    "TOKEN" CHARACTER VARYING(1000)
+);               
+ALTER TABLE "PUBLIC"."USUARIO" ADD CONSTRAINT "PUBLIC"."PK_USUARIO" PRIMARY KEY("ID");     
+ALTER TABLE "PUBLIC"."USUARIO" ADD CONSTRAINT "PUBLIC"."UK_USUARIO" UNIQUE("EMAIL");        
+ALTER TABLE "PUBLIC"."TELEFONO" ADD CONSTRAINT "PUBLIC"."FK_TELEFONO_USUARIO" FOREIGN KEY("USUARIO_ID") REFERENCES "PUBLIC"."USUARIO"("ID") NOCHECK;  
+
+```
+2. Asegúrate de tener instalado Java 21 y que este fijado como java_home y en el path.
 3. Asegúrate de tener instalado Maven en tu máquina local y que esté en el PATH.
 4. Ejecuta el siguiente comando Maven para compilar el proyecto:
 ```
 mvn clean package
 ```
-5. Ejecuta la aplicación con Maven:
+1. Ejecuta la aplicación con Maven:
 ```
 mvn exec:java -Dexec.mainClass="com.nisum.appsample.AppsampleApplication"
 ```
