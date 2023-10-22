@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nisum.appsample.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,6 +19,7 @@ import java.io.Serializable;
 import java.util.List;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.UUID;
 import lombok.Data;
@@ -45,8 +42,10 @@ public class Usuario implements Serializable {
 
     @Column(name = "name")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Size(max = 50, message = "El nombre debe tener un máximo de 50 caracteres")
     private String name;
     @Column(name = "email", unique = true)
+    @Size(max = 200, message = "El correo electrónico debe tener un máximo de 200 caracteres")
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
             flags = {Pattern.Flag.CASE_INSENSITIVE}, message = "email no valido")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
