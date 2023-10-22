@@ -1,20 +1,22 @@
 package com.nisum.appsample.controlers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author hered
+ * @author programmercito
  */
 @RestController
 public class PingControler {
 
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
-    public String ping() {
-        return "ok";
+    public Map<String, String> ping() {
+        Map<String, String> map = new HashMap<>();
+        map.put("estado", "ok");
+        return map;
     }
 }

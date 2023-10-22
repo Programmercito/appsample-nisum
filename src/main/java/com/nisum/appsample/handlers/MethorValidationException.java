@@ -2,7 +2,6 @@ package com.nisum.appsample.handlers;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
