@@ -1,11 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nisum.appsample.controlers;
 
 import com.nisum.appsample.model.entities.Usuario;
 import com.nisum.appsample.model.services.UsuarioService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,8 @@ public class UsuarioControler {
 
     @Autowired
     UsuarioService userservice;
+
+    @Operation(summary = "Crear un nuevo usuario")
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {

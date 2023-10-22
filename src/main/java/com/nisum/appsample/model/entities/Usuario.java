@@ -1,6 +1,7 @@
 package com.nisum.appsample.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,6 +26,19 @@ import org.springframework.validation.annotation.Validated;
 @Table
 @Data
 @Validated
+@Schema(example="{\n" +
+"  \"name\": \"Juan Rodriguez\",\n" +
+"  \"email\": \"juan@rodriguez.org\",\n" +
+"  \"password\": \"hunter2kkkl43#\",\n" +
+"  \"phones\": [\n" +
+"    {\n" +
+"      \"number\": \"1234567\",\n" +
+"      \"citycode\": \"1\",\n" +
+"      \"contrycode\": \"57\"\n" +
+"    }\n" +
+"  ]\n" +
+"}")
+
 public class Usuario implements Serializable {
 
     @Id
