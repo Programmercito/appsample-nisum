@@ -68,12 +68,13 @@ Como alternativa se puede usar el archivo docker que esta en la raiz del proyect
 ```
    docker build -f spring.dockerfile -t nombre-de-tu-imagen 
 ```
-y ejecutalo con :
+2. y ejecutalo con :
 
 ```
     docker run -p 8080:8080 nombre-de-tu-imagen
 ```
-
+3.. Si desea persistir los datos siga la instruccicon del paso 2 de la instalacion con maven solo que en el container de docker.
+   
 # PRUEBAS
 En ambos casos ya sea en local o con docker una ves levantando lo puedes probar y testar en estos dos endpoints:
 ```
