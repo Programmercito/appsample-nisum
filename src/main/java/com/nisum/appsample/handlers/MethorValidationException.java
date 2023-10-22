@@ -10,13 +10,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- *
+ * Esta clase proporciona un controlador para manejar excepciones de validación
+ * de método.
  * @author programmercito
  */
 @ControllerAdvice
-
 public class MethorValidationException {
 
+    /**
+     * Este método maneja excepciones de validación de método.
+     *
+     * @param ex La excepción que se ha producido.
+     * @return Un mapa que contiene un mensaje de error.
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody

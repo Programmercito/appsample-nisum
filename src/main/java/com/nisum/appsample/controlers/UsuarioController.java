@@ -19,9 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * Esta clase proporciona un controlador para el endpoint "/user". El método
+ * "insert" se utiliza para crear un nuevo usuario.
  * @author programmercito
- */
+*/
 @RestController
 @Validated
 public class UsuarioController {
@@ -29,8 +30,13 @@ public class UsuarioController {
     @Autowired
     UsuarioService userservice;
 
+    /**
+     * Este método se utiliza para crear un nuevo usuario.
+     *
+     * @param usuario El usuario que se va a crear.
+     * @return Un objeto ResponseEntity que contiene el usuario creado.
+     */
     @Operation(summary = "Crear un nuevo usuario")
-
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {
         System.out.println("ENTRANDO");

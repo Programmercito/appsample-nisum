@@ -10,12 +10,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- *
+ * Esta clase proporciona un controlador para manejar excepciones de violación
+ * de integridad.
  * @author programmercito
  */
 @ControllerAdvice
 public class IntegrityHandler {
 
+    /**
+     * Este método maneja excepciones de violación de integridad.
+     *
+     * @param ex La excepción que se ha producido.
+     * @return Un mapa que contiene un mensaje de error.
+     */
     @ExceptionHandler(JdbcSQLIntegrityConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
