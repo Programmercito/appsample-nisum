@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
+
 /**
  *
  * @author hered
@@ -36,15 +37,6 @@ public class UsuarioControler {
     public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {
         Usuario user = userservice.save(usuario);
         return ResponseEntity.ok(user);
-    }
-
-    @ExceptionHandler(JdbcSQLIntegrityConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public Map<String, String> handleJdbcSQLIntegrityConstraintViolationException(JdbcSQLIntegrityConstraintViolationException ex) {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "El correo electrónico ya está en uso");
-        return response;
     }
 
 }
