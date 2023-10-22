@@ -9,7 +9,7 @@ import java.util.Date;
  * generar tokens JWT que se utilizan para autenticar y autorizar solicitudes.
  * @author programmercito
  */
-public class JwtUtil {
+public class JwtGenerator {
 
     /**
      * Este método genera un token JWT.

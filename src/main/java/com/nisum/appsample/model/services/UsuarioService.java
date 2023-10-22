@@ -1,6 +1,6 @@
 package com.nisum.appsample.model.services;
 
-import com.nisum.appsample.controler.jwt.JwtUtil;
+import com.nisum.appsample.controler.jwt.JwtGenerator;
 import com.nisum.appsample.model.entities.Usuario;
 import com.nisum.appsample.model.repository.UsuarioRepository;
 import com.nisum.appsample.password.PasswordService;
@@ -62,7 +62,7 @@ public class UsuarioService {
         } else {
             usuario.setModified(fec);
         }
-        usuario.setToken(JwtUtil.generateJWT(usuario.getEmail(), env.getProperty("secret"), 9000));
+        usuario.setToken(JwtGenerator.generateJWT(usuario.getEmail(), env.getProperty("secret"), 9000));
         usuario.setIsactive(true);
         usuario.setPassword(PasswordService.cryptPass(usuario.getPassword(), env.getProperty("salt")));
         return usuarioRepository.save(usuario);
