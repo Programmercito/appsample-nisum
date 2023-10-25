@@ -5,7 +5,7 @@ import com.nisum.appsample.model.entities.Telefono;
 import com.nisum.appsample.model.entities.Usuario;
 import com.nisum.appsample.model.repository.UsuarioRepository;
 import com.nisum.appsample.model.services.UsuarioService;
-import jakarta.validation.ConstraintViolationException;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

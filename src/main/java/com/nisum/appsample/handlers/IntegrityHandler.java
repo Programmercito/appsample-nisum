@@ -29,7 +29,7 @@ public class IntegrityHandler {
     public Map<String, String> handleJdbcSQLIntegrityConstraintViolationException(JdbcSQLIntegrityConstraintViolationException ex) {
         Map<String, String> response = new HashMap<>();
         String mensaje = ex.getMessage();
-        if (mensaje.contains("PUBLIC.CONSTRAINT_INDEX_2 ")) {
+        if (mensaje.contains("PUBLIC.UK_") && mensaje.contains("PUBLIC.USUARIO(EMAIL")) {
             response.put("mensaje", "El correo ya registrado");
         } else {
             response.put("mensaje", "Problemas en la base de datos");

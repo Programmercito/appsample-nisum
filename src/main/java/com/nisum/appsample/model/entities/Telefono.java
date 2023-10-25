@@ -1,15 +1,17 @@
 package com.nisum.appsample.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.UUID;
+import javax.persistence.PrePersist;
 import lombok.Data;
 
 /**
@@ -24,7 +26,6 @@ public class Telefono implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;  // Este campo es el identificador único del teléfono.
 
     @Column(name = "number")
@@ -42,4 +43,9 @@ public class Telefono implements Serializable {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;  // Este campo establece una relación con la entidad Usuario. Cada teléfono está asociado a un usuario.
+
+    @PrePersist
+    public void generarId() {
+        this.id = UUID.randomUUID().toString();
+    }
 }

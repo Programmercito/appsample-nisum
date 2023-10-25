@@ -2,48 +2,51 @@ package com.nisum.appsample.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.UUID;
+import javax.persistence.PrePersist;
+import javax.persistence.UniqueConstraint;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
 /**
  * Clase Usuario que representa la entidad Usuario en la base de datos.
+ *
  * @author programmercito
  */
 @Entity  // Esta anotación indica que esta clase es una entidad.
 @Table  // Esta anotación permite especificar detalles de la tabla correspondiente a esta entidad.
 @Data  // Anotación de Lombok para generar automáticamente getters y setters.
 @Validated  // Esta anotación se utiliza para validar el objeto.
-@Schema(example="{\n" +
-"  \"name\": \"Juan Rodriguez\",\n" +
-"  \"email\": \"juan@rodriguez.org\",\n" +
-"  \"password\": \"hunter2kkkl43#\",\n" +
-"  \"phones\": [\n" +
-"    {\n" +
-"      \"number\": \"1234567\",\n" +
-"      \"citycode\": \"1\",\n" +
-"      \"contrycode\": \"57\"\n" +
-"    }\n" +
-"  ]\n" +
-"}")  // Esta anotación se utiliza para proporcionar un ejemplo de cómo se ve un objeto Usuario.
+@Schema(example = "{\n"
+        + "  \"name\": \"Juan Rodriguez\",\n"
+        + "  \"email\": \"juan@rodriguez.org\",\n"
+        + "  \"password\": \"hunter2kkkl43#\",\n"
+        + "  \"phones\": [\n"
+        + "    {\n"
+        + "      \"number\": \"1234567\",\n"
+        + "      \"citycode\": \"1\",\n"
+        + "      \"contrycode\": \"57\"\n"
+        + "    }\n"
+        + "  ]\n"
+        + "}")  // Esta anotación se utiliza para proporcionar un ejemplo de cómo se ve un objeto Usuario.
 
 public class Usuario implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;  // Este campo es el identificador único del usuario.
 
     @Column(name = "name")
@@ -51,7 +54,7 @@ public class Usuario implements Serializable {
     @Size(max = 50, message = "El nombre debe tener un máximo de 50 caracteres")
     private String name;  // Este campo almacena el nombre del usuario.
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, columnDefinition = "")
     @Size(max = 200, message = "El correo electrónico debe tener un máximo de 200 caracteres")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
@@ -89,5 +92,10 @@ public class Usuario implements Serializable {
             telefono.setUsuario(this);
         }
         this.phones = phones;  // Este método establece los teléfonos del usuario y establece la relación con la entidad Telefono.
+    }
+
+    @PrePersist
+    public void generarId() {
+        this.id = UUID.randomUUID().toString();
     }
 }

@@ -2,14 +2,8 @@ package com.nisum.appsample.controlers;
 
 import com.nisum.appsample.model.entities.Usuario;
 import com.nisum.appsample.model.services.UsuarioService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -39,7 +33,6 @@ public class UsuarioController {
     @Operation(summary = "Crear un nuevo usuario")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {
-        System.out.println("ENTRANDO");
         Usuario user = userservice.save(usuario);
         return ResponseEntity.ok(user);
     }

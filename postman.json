@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "b84e784a-f53c-43fa-9c51-f1d1cc885f88",
+		"name": "nisum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15526743"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Juan Rodriguez\",\r\n\"email\": \"juan@eemalil.com\",\r\n\"password\": \"pas34#TcfffcHgGs\",\r\n\"phones\": [\r\n{\r\n\"number\": \"1234567\",\r\n\"citycode\": \"1\",\r\n\"contrycode\": \"57\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
