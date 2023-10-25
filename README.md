@@ -2,7 +2,7 @@
 
 ## Stack
 - Base de datos: H2
-- Java 21
+- Java 11
 - Spring Boot
 - Token: JWT de Auth0
 - Generador de contraseñas: Jbcrypt
