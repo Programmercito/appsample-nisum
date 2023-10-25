@@ -12,6 +12,7 @@ export class AppComponent {
   databaseLink = 'http://h2database.com/html/main.html';
   h2library = "https://github.com/h2database/h2database/releases/download/version-2.2.224/h2-mvstore-2.2.224.jar";
   githubprofile = "https://github.com/Programmercito";
+  githubv21 = "https://github.com/Programmercito/appsample-nisum/tree/4f9adec6d7931df74eb36da48a33ca1130026d30"
   constructor() {
   }
   ir(link: string) {
@@ -34,6 +35,10 @@ export class AppComponent {
       }
       case "github": {
         window.open(this.githubprofile, "_blank");
+        break;
+      }
+      case "github21": {
+        window.open(this.githubv21, "_blank");
         break;
       }
     }
