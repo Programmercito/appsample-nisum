@@ -37,7 +37,7 @@ export class AppComponent {
         window.open(this.githubprofile, "_blank");
         break;
       }
-      case "github21": {
+      case "githubv21": {
         window.open(this.githubv21, "_blank");
         break;
       }
