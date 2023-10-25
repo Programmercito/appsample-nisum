@@ -112,3 +112,6 @@ curl --request POST \
 ]
 }'
 ```
+# Pruebas con Postman
+
+En el repo hay un archivo llamado postman.json que tiene la collection para importar y probar 
