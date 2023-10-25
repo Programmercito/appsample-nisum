@@ -84,10 +84,14 @@ Con estos pasos, la aplicación debería estar corriendo.
 ```
 http://localhost:8080/user en POST
 ```
+#  Apidoc con Swagger
+
 Para ver la documentación Swagger, visita 
 ```
 http://localhost:8080/doc/swagger-ui/index.html
 ```
+# Pruebas con curl 
+
 Si quieres probar la aplicación desde la consola, puedes usar el siguiente comando curl:
 
 ```bash
