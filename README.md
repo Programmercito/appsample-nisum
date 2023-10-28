@@ -63,7 +63,7 @@ mvn exec:java -Dexec.mainClass="com.nisum.appsample.AppsampleApplication"
 # Instalación con DOCKER
 
 Como alternativa se puede usar el archivo docker que esta en la raiz del proyecto
-1. Isntala docker en tu computador
+1. Instala docker en tu computador
 
 ```
    docker build -f spring.dockerfile -t nombre-de-tu-imagen 
