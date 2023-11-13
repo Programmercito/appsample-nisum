@@ -1,34 +1,29 @@
-package com.nisum.appsample.controlers;
+package com.nisum.appsample.presentation.usuario.controllers;
 
-import com.nisum.appsample.model.entities.Usuario;
-import com.nisum.appsample.model.services.UsuarioService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import com.nisum.appsample.common.AutoCall;
+import com.nisum.appsample.common.WebAdapter;
+import com.nisum.appsample.domain.usuario.CreateUserPort;
+import com.nisum.appsample.presentation.usuario.request.UsuarioRequest;
+
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Esta clase proporciona un controlador para el endpoint "/user". El método
  * "insert" se utiliza para crear un nuevo usuario.
+ *
  * @author programmercito
-*/
-@RestController
-@Validated
+ */
+@WebAdapter
 public class UsuarioController {
 
-    @Autowired
-    UsuarioService userservice;
+    @AutoCall
+    CreateUserPort userservice;
+    
+
 
     /**
      * Este método se utiliza para crear un nuevo usuario.
@@ -38,9 +33,9 @@ public class UsuarioController {
      */
     @Operation(summary = "Crear un nuevo usuario")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity insert(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity insert(@RequestBody UsuarioRequest usuario) {
         System.out.println("ENTRANDO");
-        Usuario user = userservice.save(usuario);
+        UsuarioRequest user = userservice.save(usuario);
         return ResponseEntity.ok(user);
     }
 

@@ -1,4 +1,4 @@
-package com.nisum.appsample.password;
+package com.nisum.appsample.common.password;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

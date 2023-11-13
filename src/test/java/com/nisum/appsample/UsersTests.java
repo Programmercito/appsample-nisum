@@ -1,10 +1,11 @@
 package com.nisum.appsample;
 
-import com.nisum.appsample.controlers.UsuarioController;
-import com.nisum.appsample.model.entities.Telefono;
-import com.nisum.appsample.model.entities.Usuario;
-import com.nisum.appsample.model.repository.UsuarioRepository;
+import com.nisum.appsample.infraestructure.usuario.entities.TelefonoEntity;
+import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
+import com.nisum.appsample.infraestructure.usuario.repository.UsuarioRepository;
 import com.nisum.appsample.model.services.UsuarioService;
+import com.nisum.appsample.presentation.controllers.UsuarioController;
+
 import jakarta.validation.ConstraintViolationException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -41,14 +42,14 @@ public class UsersTests {
     private UsuarioRepository usuarioRepository;
 
     // inicializo proyecto de prueba
-    public Usuario init() {
+    public UsuarioEntity init() {
 
-        Telefono phone = new Telefono();
+        TelefonoEntity phone = new TelefonoEntity();
         phone.setNumber("1234567");
         phone.setCitycode("1");
         phone.setContrycode("57");
 
-        Usuario user = new Usuario();
+        UsuarioEntity user = new UsuarioEntity();
         user.setName("Juan");
         user.setEmail("juan@email.com");
         user.setPassword("pass14353#gdsd");
@@ -59,7 +60,7 @@ public class UsersTests {
 
     @Test
     public void testInsertInvalidEmail() {
-        Usuario user = this.init();
+        UsuarioEntity user = this.init();
         user.setEmail("joaquinhotmail.com");
         when(usuarioRepository.save(any())).thenReturn(user);
         assertThrows(ConstraintViolationException.class, () -> {
@@ -71,7 +72,7 @@ public class UsersTests {
 
     @Test
     public void testInsertInvalidPassword() {
-        Usuario user = this.init();
+        UsuarioEntity user = this.init();
         user.setPassword("joaqjhgjjhjhgjhghj");
         when(usuarioRepository.save(any())).thenReturn(user);
         assertThrows(ConstraintViolationException.class, () -> {
@@ -90,7 +91,7 @@ public class UsersTests {
 
     @Test
     public void testSizes() {
-        Usuario user = this.init();
+        UsuarioEntity user = this.init();
         //name con 51 de size deberia fallar
         user.setName("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx2");
         when(usuarioRepository.save(any())).thenReturn(user);

@@ -1,4 +1,4 @@
-package com.nisum.appsample.controler.jwt;
+package com.nisum.appsample.common.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

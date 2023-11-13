@@ -1,17 +1,18 @@
-package com.nisum.appsample.controlers;
+package com.nisum.appsample.presentation.usuario.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.nisum.appsample.common.WebAdapter;
 
 /**
  * Esta clase proporciona un controlador para el endpoint "/ping". El método
  * "ping" devuelve un mapa con una clave "estado" y un valor "ok".
  * @author programmercito
 */
-@RestController
+@WebAdapter
 public class PingControler {
 
     /**

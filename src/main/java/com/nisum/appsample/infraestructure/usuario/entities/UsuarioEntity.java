@@ -1,4 +1,4 @@
-package com.nisum.appsample.model.entities;
+package com.nisum.appsample.infraestructure.usuario.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -39,7 +39,7 @@ import org.springframework.validation.annotation.Validated;
 "  ]\n" +
 "}")  // Esta anotación se utiliza para proporcionar un ejemplo de cómo se ve un objeto Usuario.
 
-public class Usuario implements Serializable {
+public class UsuarioEntity implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -66,7 +66,7 @@ public class Usuario implements Serializable {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<Telefono> phones;  // Este campo establece una relación uno a muchos con la entidad Telefono. Un usuario puede tener varios teléfonos.
+    private List<TelefonoEntity> phones;  // Este campo establece una relación uno a muchos con la entidad Telefono. Un usuario puede tener varios teléfonos.
 
     @Column(name = "created")
     private Date created;  // Este campo almacena la fecha en que se creó el usuario.
@@ -84,8 +84,8 @@ public class Usuario implements Serializable {
     @Column(name = "token")
     private String token;  // Este campo almacena el token del usuario.
 
-    public void setPhones(List<Telefono> phones) {
-        for (Telefono telefono : phones) {
+    public void setPhones(List<TelefonoEntity> phones) {
+        for (TelefonoEntity telefono : phones) {
             telefono.setUsuario(this);
         }
         this.phones = phones;  // Este método establece los teléfonos del usuario y establece la relación con la entidad Telefono.

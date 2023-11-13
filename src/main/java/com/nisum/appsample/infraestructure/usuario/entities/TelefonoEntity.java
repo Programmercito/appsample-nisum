@@ -1,4 +1,4 @@
-package com.nisum.appsample.model.entities;
+package com.nisum.appsample.infraestructure.usuario.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +20,7 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class Telefono implements Serializable {
+public class TelefonoEntity implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -41,5 +41,5 @@ public class Telefono implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario;  // Este campo establece una relación con la entidad Usuario. Cada teléfono está asociado a un usuario.
+    private UsuarioEntity usuario;  // Este campo establece una relación con la entidad Usuario. Cada teléfono está asociado a un usuario.
 }

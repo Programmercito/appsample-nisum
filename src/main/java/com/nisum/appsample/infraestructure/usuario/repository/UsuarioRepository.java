@@ -1,6 +1,6 @@
-package com.nisum.appsample.model.repository;
+package com.nisum.appsample.infraestructure.usuario.repository;
 
-import com.nisum.appsample.model.entities.Usuario;
+import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @author programmercito
  */
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
 }
