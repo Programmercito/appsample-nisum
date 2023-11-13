@@ -1,7 +1,7 @@
 package com.nisum.appsample.model.services;
 
-import com.nisum.appsample.controler.jwt.JwtGenerator;
-import com.nisum.appsample.model.entities.Usuario;
+import com.nisum.appsample.common.jwt.JwtGenerator;
+import com.nisum.appsample.model.entities.UsuarioEntity;
 import com.nisum.appsample.model.repository.UsuarioRepository;
 import com.nisum.appsample.password.PasswordGenerator;
 import java.util.Date;
@@ -32,7 +32,7 @@ public class UsuarioService {
      *
      * @return lista de usuarios.
      */
-    public List<Usuario> findAll() {
+    public List<UsuarioEntity> findAll() {
         return usuarioRepository.findAll();
     }
 
@@ -42,7 +42,7 @@ public class UsuarioService {
      * @param id del usuario.
      * @return usuario encontrado.
      */
-    public Optional<Usuario> findById(Long id) {
+    public Optional<UsuarioEntity> findById(Long id) {
         return usuarioRepository.findById(id);
     }
 
@@ -52,7 +52,7 @@ public class UsuarioService {
      * @param usuario a guardar.
      * @return usuario guardado.
      */
-    public Usuario save(Usuario usuario) {
+    public UsuarioEntity save(UsuarioEntity usuario) {
         Date fec = new Date();
 
         if (usuario.getId() == null) {
