@@ -3,27 +3,22 @@ package com.nisum.appsample;
 import com.nisum.appsample.infraestructure.usuario.entities.TelefonoEntity;
 import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
 import com.nisum.appsample.infraestructure.usuario.repository.UsuarioRepository;
-import com.nisum.appsample.model.services.UsuarioService;
-import com.nisum.appsample.presentation.controllers.UsuarioController;
+import com.nisum.appsample.presentation.usuario.controllers.UsuarioController;
+import com.nisum.appsample.presentation.usuario.request.TelefonoRequest;
+import com.nisum.appsample.presentation.usuario.request.UsuarioRequest;
 
 import jakarta.validation.ConstraintViolationException;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 /**
  *
@@ -42,14 +37,14 @@ public class UsersTests {
     private UsuarioRepository usuarioRepository;
 
     // inicializo proyecto de prueba
-    public UsuarioEntity init() {
+    public UsuarioRequest init() {
 
-        TelefonoEntity phone = new TelefonoEntity();
+        TelefonoRequest phone = new TelefonoRequest();
         phone.setNumber("1234567");
         phone.setCitycode("1");
         phone.setContrycode("57");
 
-        UsuarioEntity user = new UsuarioEntity();
+        UsuarioRequest user = new UsuarioRequest();
         user.setName("Juan");
         user.setEmail("juan@email.com");
         user.setPassword("pass14353#gdsd");
@@ -60,7 +55,7 @@ public class UsersTests {
 
     @Test
     public void testInsertInvalidEmail() {
-        UsuarioEntity user = this.init();
+        UsuarioRequest user = this.init();
         user.setEmail("joaquinhotmail.com");
         when(usuarioRepository.save(any())).thenReturn(user);
         assertThrows(ConstraintViolationException.class, () -> {
@@ -72,7 +67,7 @@ public class UsersTests {
 
     @Test
     public void testInsertInvalidPassword() {
-        UsuarioEntity user = this.init();
+        UsuarioRequest user = this.init();
         user.setPassword("joaqjhgjjhjhgjhghj");
         when(usuarioRepository.save(any())).thenReturn(user);
         assertThrows(ConstraintViolationException.class, () -> {
@@ -91,7 +86,7 @@ public class UsersTests {
 
     @Test
     public void testSizes() {
-        UsuarioEntity user = this.init();
+        UsuarioRequest user = this.init();
         //name con 51 de size deberia fallar
         user.setName("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx2");
         when(usuarioRepository.save(any())).thenReturn(user);
