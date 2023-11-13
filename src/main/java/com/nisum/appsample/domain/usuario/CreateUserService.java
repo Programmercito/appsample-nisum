@@ -1,11 +1,10 @@
 package com.nisum.appsample.domain.usuario;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nisum.appsample.common.AutoCall;
 import com.nisum.appsample.common.UserMapper;
+import com.nisum.appsample.common.jwt.JwtGenerator;
 import com.nisum.appsample.common.password.PasswordGenerator;
-import com.nisum.appsample.controler.jwt.JwtGenerator;
 import com.nisum.appsample.infraestructure.usuario.UpdateUserPort;
 import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
 import com.nisum.appsample.presentation.usuario.request.UsuarioRequest;
