@@ -1,6 +1,9 @@
 package com.nisum.appsample.presentation.handlers;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Esta clase proporciona un controlador para manejar excepciones de validación
  * de método.
+ *
  * @author programmercito
  */
 @ControllerAdvice
@@ -23,18 +27,23 @@ public class MethorValidationException {
      * @param ex La excepción que se ha producido.
      * @return Un mapa que contiene un mensaje de error.
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        Map<String, String> response = new HashMap<>();
+    public ErrorMensaje handleMethodArgumentNotValidException(ConstraintViolationException ex) {
+        ErrorMensaje error = new ErrorMensaje();
         String mens;
         try {
-            mens = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
+            Iterator<ConstraintViolation<?>> iterator = ex.getConstraintViolations().iterator();
+            mens = "Error inesperado";
+            while (iterator.hasNext()) {
+                ConstraintViolation<?> cv = iterator.next();
+                mens = cv.getMessageTemplate();
+            }
         } catch (Exception e) {
-            mens = ex.getBindingResult().getFieldErrors().get(0).getField();
+            mens = "error inesperado";
         }
-        response.put("mensaje", mens);
-        return response;
+        error.setMensaje(mens);
+        return error;
     }
 }

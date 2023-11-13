@@ -18,7 +18,7 @@ import lombok.Data;
  * @author programmercito
  */
 @Entity
-@Table
+@Table(name = "TELEFONO")
 @Data
 public class TelefonoEntity implements Serializable {
 

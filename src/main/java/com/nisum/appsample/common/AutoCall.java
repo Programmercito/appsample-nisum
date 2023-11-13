@@ -11,10 +11,9 @@ import org.springframework.core.annotation.AliasFor;
  *
  * @author programmercito
  */
-@Target({ElementType.FIELD})
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
+@Autowired
 public @interface AutoCall {
 
-    @AliasFor(annotation = Autowired.class)
-    String value() default "";
 }

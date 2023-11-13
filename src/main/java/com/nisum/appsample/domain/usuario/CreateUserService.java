@@ -1,6 +1,7 @@
 package com.nisum.appsample.domain.usuario;
 
 import com.nisum.appsample.common.AutoCall;
+import com.nisum.appsample.common.UseCase;
 import com.nisum.appsample.common.UserMapper;
 import com.nisum.appsample.common.jwt.JwtGenerator;
 import com.nisum.appsample.common.password.PasswordGenerator;
@@ -12,6 +13,7 @@ import com.nisum.appsample.presentation.usuario.request.UsuarioRequest;
 import java.util.Date;
 import org.springframework.core.env.Environment;
 
+@UseCase
 public class CreateUserService implements CreateUserPort {
 
     @AutoCall
@@ -33,8 +35,12 @@ public class CreateUserService implements CreateUserPort {
         }
         usuario.setToken(JwtGenerator.generateJWT(usuario.getEmail(), env.getProperty("secret"), 9000));
         usuario.setIsactive(true);
-        usuario.setPassword(PasswordGenerator.cryptPass(usuario.getPassword(), env.getProperty("salt")));
+        usuario.setPasswordReal(PasswordGenerator.cryptPass(usuario.getPassword(), env.getProperty("salt")));
+        
         UsuarioEntity usuarioentity=UserMapper.domainToEntity(usuario);
+        System.out.println("Aqui");
+        System.out.println(usuarioentity.getPassword());
+        System.out.println(usuarioentity.getPasswordReal());
         return UserMapper.entityToDomain(updateUserPort.save(usuarioentity));
     }
 

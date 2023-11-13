@@ -25,10 +25,17 @@ import org.springframework.validation.annotation.Validated;
  */
 @Data  // Anotación de Lombok para generar automáticamente getters y setters.
 public class UsuarioRequest implements Serializable {
+
     private String id;  // Este campo es el identificador único del usuario.
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String name;  // Este campo almacena el nombre del usuario.
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;  // Este campo almacena el correo electrónico del usuario.
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;  // Este campo almacena la contraseña del usuario.
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String passwordReal;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<TelefonoRequest> phones;  // Este campo establece una relación uno a muchos con la entidad Telefono. Un usuario puede tener varios teléfonos.
     private Date created;  // Este campo almacena la fecha en que se creó el usuario.
     private Date modified;  // Este campo almacena la fecha en que se modificó el usuario.

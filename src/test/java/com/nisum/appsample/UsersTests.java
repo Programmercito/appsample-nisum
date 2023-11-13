@@ -1,5 +1,6 @@
 package com.nisum.appsample;
 
+import com.nisum.appsample.common.UserMapper;
 import com.nisum.appsample.infraestructure.usuario.entities.TelefonoEntity;
 import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
 import com.nisum.appsample.infraestructure.usuario.repository.UsuarioRepository;
@@ -57,7 +58,7 @@ public class UsersTests {
     public void testInsertInvalidEmail() {
         UsuarioRequest user = this.init();
         user.setEmail("joaquinhotmail.com");
-        when(usuarioRepository.save(any())).thenReturn(user);
+        when(usuarioRepository.save(any())).thenReturn(UserMapper.domainToEntity(user));
         assertThrows(ConstraintViolationException.class, () -> {
             usuarioController.insert(user);
         });
@@ -68,17 +69,20 @@ public class UsersTests {
     @Test
     public void testInsertInvalidPassword() {
         UsuarioRequest user = this.init();
-        user.setPassword("joaqjhgjjhjhgjhghj");
-        when(usuarioRepository.save(any())).thenReturn(user);
+        //user.setPassword("joaqjhgjjhjhgjhghj");
+        user.setPassword("joaqjhgjj@DSFS45353j");
+        when(usuarioRepository.save(any())).thenReturn(UserMapper.domainToEntity(user));
         assertThrows(ConstraintViolationException.class, () -> {
             usuarioController.insert(user);
         });
         verify(usuarioRepository, never()).save(any());
         //part 2
         user.setPassword("joaq3ds");
-        when(usuarioRepository.save(any())).thenReturn(user);
+        when(usuarioRepository.save(any())).thenReturn(UserMapper.domainToEntity(user));
         assertThrows(ConstraintViolationException.class, () -> {
+
             usuarioController.insert(user);
+
         });
         verify(usuarioRepository, never()).save(any());
 
@@ -89,7 +93,7 @@ public class UsersTests {
         UsuarioRequest user = this.init();
         //name con 51 de size deberia fallar
         user.setName("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx2");
-        when(usuarioRepository.save(any())).thenReturn(user);
+        when(usuarioRepository.save(any())).thenReturn(UserMapper.domainToEntity(user));
         assertThrows(ConstraintViolationException.class, () -> {
             usuarioController.insert(user);
         });

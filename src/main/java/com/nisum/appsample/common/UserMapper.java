@@ -7,8 +7,8 @@ import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
 import com.nisum.appsample.presentation.usuario.request.TelefonoRequest;
 import com.nisum.appsample.presentation.usuario.request.UsuarioRequest;
 
-
 public class UserMapper {
+
     public static UsuarioRequest entityToDomain(UsuarioEntity usuarioentity) {
         UsuarioRequest usuario = new UsuarioRequest();
         usuario.setCreated(usuarioentity.getCreated());
@@ -19,6 +19,7 @@ public class UserMapper {
         usuario.setModified(usuarioentity.getModified());
         usuario.setName(usuarioentity.getName());
         usuario.setPassword(usuarioentity.getPassword());
+        usuario.setPasswordReal(usuarioentity.getPasswordReal());
         usuario.setPhones(new ArrayList<TelefonoRequest>());
         for (TelefonoEntity telefonoentity : usuarioentity.getPhones()) {
             TelefonoRequest telefono = new TelefonoRequest();
@@ -43,6 +44,7 @@ public class UserMapper {
         usuarioentity.setModified(usuario.getModified());
         usuarioentity.setName(usuario.getName());
         usuarioentity.setPassword(usuario.getPassword());
+        usuarioentity.setPasswordReal(usuario.getPasswordReal());
         usuarioentity.setPhones(new ArrayList<TelefonoEntity>());
         for (TelefonoRequest telefono : usuario.getPhones()) {
             TelefonoEntity telefonoentity = new TelefonoEntity();
