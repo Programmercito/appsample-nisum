@@ -23,8 +23,6 @@ public class UsuarioController {
     @AutoCall
     CreateUserPort userservice;
     
-
-
     /**
      * Este método se utiliza para crear un nuevo usuario.
      *

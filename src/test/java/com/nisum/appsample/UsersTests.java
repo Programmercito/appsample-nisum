@@ -70,7 +70,7 @@ public class UsersTests {
     public void testInsertInvalidPassword() {
         UsuarioRequest user = this.init();
         //user.setPassword("joaqjhgjjhjhgjhghj");
-        user.setPassword("joaqjhgjj@DSFS45353j");
+        user.setPassword("DDDDDjhgfjgfjfddddd333");
         when(usuarioRepository.save(any())).thenReturn(UserMapper.domainToEntity(user));
         assertThrows(ConstraintViolationException.class, () -> {
             usuarioController.insert(user);

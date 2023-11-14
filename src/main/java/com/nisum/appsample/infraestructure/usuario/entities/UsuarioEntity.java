@@ -58,8 +58,9 @@ public class UsuarioEntity implements Serializable {
     private String email;  // Este campo almacena el correo electrónico del usuario.
 
     @Transient
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\\\\\]{};':\"\\\\\\\\|,.<>/?]*).{14,20}$",
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
             flags = {Pattern.Flag.CASE_INSENSITIVE}, message = "password no valido")
+
     private String password;
 
     @Column(name = "password")
