@@ -3,6 +3,7 @@ package com.nisum.appsample.common.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import java.util.Date;
+import org.springframework.stereotype.Component;
 
 /**
  * Esta clase proporciona una utilidad para generar tokens JWT. Se utiliza para
@@ -10,7 +11,8 @@ import java.util.Date;
  *
  * @author programmercito
  */
-public class JwtGeneratorAuth0 {
+@Component
+public class JwtGeneratorAuth0 implements JwtGenerator {
 
     /**
      * Este método genera un token JWT.
