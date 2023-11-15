@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author programmercito
  */
-public class JwtGenerator {
+public class JwtGeneratorAuth0 {
 
     /**
      * Este método genera un token JWT.
@@ -19,8 +19,9 @@ public class JwtGenerator {
      * @param secretKey La clave secreta utilizada para firmar el token.
      * @param minutes La duración del token en minutos.
      * @return El token JWT generado.
+     * 
      */
-    public static String generateJWT(String subject, String secretKey, int minutes) {
+    public String generateJWT(String subject, String secretKey, int minutes) {
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 

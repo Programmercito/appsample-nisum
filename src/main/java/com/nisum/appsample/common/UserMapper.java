@@ -30,6 +30,7 @@ public class UserMapper {
             telefono.setUsuario(usuario);
             usuario.getPhones().add(telefono);
         }
+
         usuario.setToken(usuarioentity.getToken());
         return usuario;
     }

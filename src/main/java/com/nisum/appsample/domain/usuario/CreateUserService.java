@@ -4,7 +4,9 @@ import com.nisum.appsample.common.AutoCall;
 import com.nisum.appsample.common.UseCase;
 import com.nisum.appsample.common.UserMapper;
 import com.nisum.appsample.common.jwt.JwtGenerator;
+import com.nisum.appsample.common.jwt.JwtGeneratorAuth0;
 import com.nisum.appsample.common.password.PasswordGenerator;
+import com.nisum.appsample.common.password.PasswordGeneratorJbcrypt;
 
 import com.nisum.appsample.infraestructure.usuario.UpdateUserPort;
 import com.nisum.appsample.infraestructure.usuario.entities.UsuarioEntity;
@@ -17,7 +19,13 @@ public class CreateUserService implements CreateUserPort {
 
     @AutoCall
     UpdateUserPort updateUserPort;
-    
+
+    @AutoCall
+    JwtGenerator jwtgenerator;
+
+    @AutoCall
+    PasswordGenerator passwordgenerator;
+
     @AutoCall
     private Environment env;
 
@@ -32,11 +40,11 @@ public class CreateUserService implements CreateUserPort {
         } else {
             usuario.setModified(fec);
         }
-        usuario.setToken(JwtGenerator.generateJWT(usuario.getEmail(), env.getProperty("secret"), 9000));
+        usuario.setToken(jwtgenerator.generateJWT(usuario.getEmail(), env.getProperty("secret"), 9000));
         usuario.setIsactive(true);
-        usuario.setPasswordReal(PasswordGenerator.cryptPass(usuario.getPassword(), env.getProperty("salt")));
-        
-        UsuarioEntity usuarioentity=UserMapper.domainToEntity(usuario);
+        usuario.setPasswordReal(passwordgenerator.cryptPass(usuario.getPassword(), env.getProperty("salt")));
+
+        UsuarioEntity usuarioentity = UserMapper.domainToEntity(usuario);
         System.out.println("Aqui");
         System.out.println(usuarioentity.getPassword());
         System.out.println(usuarioentity.getPasswordReal());
