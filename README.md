@@ -1,6 +1,6 @@
 # Appsample
 
-[website of sample](https://programmercito.github.io/appsample-nisum/#/)
+[website of sample](https://programmercito.github.io/osbo-cleancode-hexagonal-architecture/#/)
 
 ## Stack
 - Base de datos: H2
